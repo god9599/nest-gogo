@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { Movie } from './entities/movie.entity';
 import { MoviesService } from './movies.service';
+import { CreateMovieDto } from './dto/create-movie.dto';
 
 @Controller('movies')
 export class MoviesController {
@@ -18,13 +19,14 @@ export class MoviesController {
   getAll(): Movie[] {
     return this.moviesService.getAll();
   }
+
   @Get(':id')
   getOne(@Param('id') movieId: string): Movie {
     return this.moviesService.getOne(movieId);
   }
 
   @Post()
-  create(@Body() movieData) {
+  create(@Body() movieData: CreateMovieDto) {
     return this.moviesService.create(movieData);
   }
 
